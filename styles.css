@@ -1,0 +1,412 @@
+
+:root {
+      --charcoal-900: #1a1b1e;   /* sidebar */
+  --charcoal-800: #232428;   /* cards */
+  --charcoal-700: #2e3035;   /* borders / hover */
+  --text:         #d9d9dc;
+  --text-muted:   #9a9ba1;
+  --gold:         #d4af37;
+  --gold-light:   #e8c96a;
+  --bg:           #18191c;
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body:    'Open Sans', sans-serif;
+
+  --sidebar-width: 320px;
+  --radius: 10px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a{
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--gold-light);
+}
+
+ul {
+  list-style: none;
+}
+/* Two-column layout (CSS Grid ) */
+.container{
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: 100vh;
+}
+
+
+ /* 3.Sticky sidebar */
+
+.sidebar{
+    position:sticky;
+    top:0;
+    height: 100vh;  /* needed so sticky has a fixed box to stay in */
+    background-color: var(--charcoal-900);
+    border-right: 1px solid var(--charcoal-700);
+    padding: 3rem 2rem 2rem;
+
+    /* felxbox: stack profile/nav / footer vertically */
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;  /* push footer to bottom */
+    align-items: center;
+    text-align: center;
+}
+
+.profile-image{
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+align-items: center;
+    border-radius: 50%;
+    border: 3px solid var(--gold);          
+    object-fit: cover;
+    
+}
+
+.profile-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--gold);
+}
+.profile-title {
+  color: var(--gold);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav__link {
+  display: block;
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--text);
+  border-radius: 50px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav__link:hover {
+  background-color: var(--gold);
+  color: var(--charcoal-900);
+}
+
+.sidebar__footer {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ---------- 5. Main content ---------- */
+.content {
+  padding: 4rem 5rem;
+  max-width: 1000px;
+}
+
+.section {
+  margin-bottom: 5rem;
+  scroll-margin-top: 2rem;     /* keeps headings visible after anchor jump */
+}
+
+.section p {
+  margin-bottom: 1rem;
+}
+
+.section__title {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Gold underline accent (pseudo-element) */
+.section__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--gold);
+  border-radius: 2px;
+}
+
+/* ---------- 6. Education timeline (pseudo-elements) ---------- */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+/* The vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--charcoal-700);
+}
+
+.timeline__item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+/* The gold dot on the line */
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  left: calc(-2rem + 1px);
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--gold);
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+.timeline__date {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+.timeline__heading {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.timeline__place {
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 0.4rem !important;
+}
+
+/* ---------- 7. Skills (auto-fit responsive grid) ---------- */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.skill-card {
+  padding: 1.1rem 1rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  background-color: var(--charcoal-800);
+  border: 1px solid var(--charcoal-700);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.skill-card:hover {
+  background-color: var(--charcoal-700);
+  transform: translateY(-3px);
+}
+
+/* ---------- 8. Project cards (hover transitions & transforms) ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+}
+
+.card {
+  overflow: hidden;
+  background-color: var(--charcoal-800);
+  border: 1px solid var(--charcoal-700);
+  border-radius: var(--radius);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.card__img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;           /* crops image to fill the box without stretching */
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card__img {
+  transform: scale(1.06);
+}
+
+.card__body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.card__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.card__text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem !important;
+}
+
+.card__link {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ---------- 9. Contact ---------- */
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.contact strong {
+  color: #fff;
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN (desktop-first: max-width queries)
+   ========================================================== */
+
+/* ----- Tablet landscape / small laptops ----- */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 260px;
+  }
+
+  .sidebar {
+    padding: 2.5rem 1.25rem 1.5rem;
+  }
+
+  .profile__photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .content {
+    padding: 3rem 2.5rem;
+  }
+}
+
+/* ----- Tablet portrait & phones: stack the layout ----- */
+@media (max-width: 768px) {
+  /* One column; sidebar becomes a normal top header */
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;          /* turn sticky off */
+    height: auto;
+    gap: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--charcoal-700);
+    padding: 2rem 1.25rem 1.5rem;
+  }
+
+  /* Nav turns into a horizontal, wrapping row */
+  .nav__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .nav__link {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .sidebar__footer {
+    display: none;
+  }
+
+  .content {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .section {
+    margin-bottom: 3.5rem;
+  }
+
+  .section__title {
+    font-size: 1.6rem;
+  }
+}
+
+/* ----- Small phones ----- */
+@media (max-width: 480px) {
+  .profile__name {
+    font-size: 1.35rem;
+  }
+
+  .content {
+    padding: 2rem 1rem;
+  }
+
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .card__img {
+    height: 170px;
+  }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
+
+
+
